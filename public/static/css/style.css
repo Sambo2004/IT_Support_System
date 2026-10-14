@@ -1,0 +1,283 @@
+/* ==========================================================================
+   IT Support Management System - Comprehensive Responsive Stylesheet
+   Supports Desktop, Laptop, Tablet, and Mobile (all devices)
+   ========================================================================== */
+
+:root {
+    --sidebar-width: 260px;
+    --sidebar-bg: #1e293b;
+    --sidebar-hover: #334155;
+    --sidebar-active: #0d6efd;
+    --primary-color: #0d6efd;
+    --body-bg: #f8fafc;
+    --topbar-height: 60px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--body-bg);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #334155;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   App Layout & Structural Wrappers
+   -------------------------------------------------------------------------- */
+#wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+#page-content-wrapper {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    background-color: var(--body-bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.content-container {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar Navigation
+   -------------------------------------------------------------------------- */
+#sidebar, .sidebar {
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    max-width: var(--sidebar-width);
+    background-color: var(--sidebar-bg);
+    color: #f8fafc;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 1040;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.3s ease;
+}
+
+#sidebar .sidebar-brand {
+    padding: 1.15rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#sidebar .nav-link {
+    color: #94a3b8;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.925rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    border-left: 4px solid transparent;
+    border-radius: 0;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
+}
+
+#sidebar .nav-link:hover {
+    color: #ffffff;
+    background-color: var(--sidebar-hover);
+}
+
+#sidebar .nav-link.active {
+    color: #ffffff;
+    background-color: rgba(13, 110, 253, 0.18);
+    border-left-color: var(--sidebar-active);
+    font-weight: 600;
+}
+
+#sidebar .nav-link i {
+    font-size: 1.15rem;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+
+.sidebar-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Sidebar Backdrop on Mobile */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(2px);
+    z-index: 1030;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Topbar Navigation
+   -------------------------------------------------------------------------- */
+.topbar {
+    min-height: var(--topbar-height);
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.6rem 1.25rem;
+    z-index: 1020;
+}
+
+.sidebar-toggler {
+    padding: 0.25rem 0.5rem;
+    color: #1e293b;
+    border-radius: 6px;
+    background: transparent;
+    border: none;
+    line-height: 1;
+}
+
+.sidebar-toggler:hover {
+    background-color: #f1f5f9;
+}
+
+/* --------------------------------------------------------------------------
+   Cards, Tables, Badges & Forms
+   -------------------------------------------------------------------------- */
+.card {
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+}
+
+.card-header {
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table > :not(caption) > * > * {
+    padding: 0.85rem 0.75rem;
+    vertical-align: middle;
+}
+
+.badge {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.4em 0.65em;
+    font-size: 0.785rem;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints: Mobile & Tablet
+   -------------------------------------------------------------------------- */
+
+/* Tablet & Mobile (max-width: 991.98px) */
+@media (max-width: 991.98px) {
+    #sidebar, .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        height: 100vh;
+        transform: translateX(-100%);
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.35);
+    }
+
+    #wrapper.toggled #sidebar,
+    #wrapper.toggled .sidebar {
+        transform: translateX(0);
+    }
+
+    #wrapper.toggled .sidebar-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .content-container {
+        padding: 1.1rem;
+    }
+}
+
+/* Mobile Devices (max-width: 767.98px) */
+@media (max-width: 767.98px) {
+    .content-container {
+        padding: 0.85rem;
+    }
+
+    .topbar {
+        padding: 0.5rem 0.75rem;
+    }
+
+    /* Stack header actions vertically on mobile */
+    .page-header-responsive {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem;
+    }
+
+    .page-header-responsive .btn,
+    .page-header-responsive .btn-group {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Filters full-width on mobile */
+    .filter-form-responsive .col-md-2,
+    .filter-form-responsive .col-md-3,
+    .filter-form-responsive .col-md-4 {
+        width: 100%;
+    }
+
+    /* Mobile Table improvements: prevent cramping */
+    .table-responsive table {
+        min-width: 600px;
+    }
+
+    /* Responsive typography */
+    h4, .h4 {
+        font-size: 1.25rem;
+    }
+
+    h3, .h3 {
+        font-size: 1.45rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+/* Small Smartphone (max-width: 480px) */
+@media (max-width: 480px) {
+    :root {
+        --sidebar-width: 82vw;
+    }
+
+    .content-container {
+        padding: 0.65rem;
+    }
+
+    .card {
+        border-radius: 8px;
+    }
+
+    .badge {
+        font-size: 0.725rem;
+    }
+
+    .topbar .dropdown-toggle span {
+        display: none !important;
+    }
+}

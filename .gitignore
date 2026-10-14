@@ -1,0 +1,34 @@
+# ==============================================
+# IT Support System - Git Ignore Rules
+# ==============================================
+
+# Environment file (contains secrets)
+.env
+
+# Do NOT ignore the template:
+# !.env.example
+
+# Log files
+storage/logs/*.log
+
+# Composer dependencies
+vendor/
+
+# IDE / Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# OS generated files
+desktop.ini
+.Spotlight-V100
+.Trashes
+
+# Temporary files
+*.tmp
+*.bak
+*.cache

@@ -1,0 +1,32 @@
+# Public .htaccess - Front controller rewrite rules
+# Disable directory listing
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Set the base directory for rewrites
+    RewriteBase /IT_Support_System/public/
+
+    # If the requested file exists (CSS, JS, images), serve it directly
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Otherwise, rewrite everything to index.php
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+
+    # Prevent clickjacking by disallowing framing
+    Header set X-Frame-Options "SAMEORIGIN"
+
+    # Enable XSS protection in older browsers
+    Header set X-XSS-Protection "1; mode=block"
+
+    # Referrer policy for privacy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
